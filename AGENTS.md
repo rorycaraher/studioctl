@@ -130,9 +130,11 @@ files do only argument handling, orchestration, and output formatting:
   exclude-lists, and DAW detection. One `detector` per supported DAW
   recognises its Projects by layout (Ableton: a top-level `.als` file;
   Live's auto-generated `Backup/` folder is never scanned). `LoadProject`
-  reads one folder, `DiscoverProjects` finds the Projects among a
-  directory's direct children, `DetectDAW` takes the first one's DAW (every
-  Project in the projects Directory is assumed to share one), and
+  reads one folder, `DiscoverProjects` finds the Projects at any depth
+  under a directory (never descending into a Project, a hidden folder, or a
+  DAW's generated folders like Live's `Backup/`), `DetectDAW` takes the
+  first one's DAW (every Project in the projects Directory is assumed to
+  share one), and
   `VersionDAW` judges a single Version file by extension. Every other
   package that needs to know what a "project" is depends on this one; adding
   a DAW starts with a new entry in `detectors`.
