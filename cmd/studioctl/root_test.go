@@ -133,7 +133,7 @@ func TestProjectLines(t *testing.T) {
 		{Name: "longer name", Path: "/p/l", Versions: make([]string, 12)},
 		{Name: "mid", Path: "/p/m", Versions: make([]string, 1)},
 	}
-	got := projectLines(ps)
+	got := projectLines("/p", ps)
 	want := []string{
 		"  - a             2 versions",
 		"  - longer name  12 versions",
@@ -142,7 +142,21 @@ func TestProjectLines(t *testing.T) {
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got\n%q\nwant\n%q", got, want)
 	}
+}
 
+func TestProjectLines_Grouped(t *testing.T) {
+	ps := []discovery.Project{
+		{Name: "Alpha", Path: "/p/zz/2024/Alpha Project", Versions: make([]string, 1)},
+		{Name: "Beta", Path: "/p/Beta", Versions: make([]string, 3)},
+	}
+	got := projectLines("/p", ps)
+	want := []string{
+		"  - Beta           3 versions",
+		"  - zz/2024/Alpha  1 version",
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got\n%q\nwant\n%q", got, want)
+	}
 }
 
 func TestWriteDemos(t *testing.T) {

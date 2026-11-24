@@ -24,8 +24,9 @@ _Avoid_: Backup, mirror
 
 **Projects directory**:
 The Directory named `projects`: it holds every Project the tool manages.
-Projects are its direct children — there is no intermediate grouping
-directory. Every Project in it is assumed to come from the same DAW.
+Projects may sit at any depth in it, grouped into subfolders however the
+producer likes; the grouping carries no meaning to the tool. Every Project
+in it is assumed to come from the same DAW.
 _Avoid_: Artist directory, artist root, artist namespace
 
 **Demos directory**:
@@ -41,11 +42,12 @@ never configured. Only Ableton Live is supported.
 _Avoid_: Host, engine
 
 **Project**:
-Any direct child of the Projects directory whose layout a supported DAW
+Any directory under the Projects directory whose layout a supported DAW
 recognises: for Ableton, a top-level `.als` file. Directories without one
-(reference material, sample packs, etc.) are skipped automatically. Only
-top-level `.als` files count — Ableton's auto-generated `Backup/` folder is
-never scanned. A Project's name is its
+(reference material, sample packs, grouping folders) are searched for
+Projects but never listed as one; a Project's own subfolders, hidden
+folders and Ableton's generated `Backup/` and `Ableton Project Info/` are
+never searched. Only top-level `.als` files count as Versions. A Project's name is its
 folder name without the ` Project` suffix Live appends (`installations
 Project` is `installations`); the suffix is optional wherever a name is
 accepted.

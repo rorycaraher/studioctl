@@ -13,12 +13,14 @@ layout. Ableton Live is the only DAW supported so far.
   number of rclone remotes it's backed up to (see Configure). Most are only
   backed up; two names are special:
 - **Projects directory** (`projects`): holds every Project you want
-  studioctl to manage. Projects are its direct children - there's no
-  grouping subdirectory. They're assumed to all come from the same DAW.
-- **Project**: any direct child of the projects directory that a supported
+  studioctl to manage. Projects can sit directly in it or be grouped into
+  subfolders at any depth (`2024/EP/Song Project`). They're assumed to all
+  come from the same DAW.
+- **Project**: any folder under the projects directory that a supported
   DAW's layout is recognised in - for Ableton Live, a top-level `.als` file.
-  Folders without one (reference material, sample packs, etc.) are skipped
-  automatically - there's no exclude-list to maintain.
+  Other folders (reference material, sample packs, grouping folders) are
+  searched but never listed - there's no exclude-list to maintain. Nothing
+  inside a Project is searched for further Projects.
 - **Demos directory** (`demos`): wherever your WIP demo bounces land. It
   doesn't need to live inside the projects directory. Only mp3 belongs here
   long-term - aiff/wav masters for finishing live elsewhere.
